@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "prisma generate",
+    "prebuild": "prisma migrate deploy && prisma generate",
     "build": "next build",
-    "build:hostinger": "prisma migrate deploy && npm run build",
+    "build:hostinger": "npm run build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
