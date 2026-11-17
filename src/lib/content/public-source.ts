@@ -26,7 +26,7 @@ import {
 } from "@/lib/richtext/types";
 
 /** Local hızlı test: MySQL yokken .env içinde USE_FIXTURES_ONLY=1 */
-function useFixturesOnly() {
+function fixturesOnlyMode() {
   return (
     process.env.USE_FIXTURES_ONLY === "1" ||
     process.env.USE_FIXTURES_ONLY === "true" ||
@@ -294,7 +294,7 @@ function flattenTipTapText(node: unknown): string {
 }
 
 export async function loadPublicPosts(): Promise<PublicPost[]> {
-  if (useFixturesOnly()) return getPublishedPosts().map(mapFixturePost);
+  if (fixturesOnlyMode()) return getPublishedPosts().map(mapFixturePost);
   return withDbFallback(async () => {
     const { findPublishedBlogPosts } = await import(
       "@/server/repositories/blog-repository"
@@ -323,7 +323,7 @@ export async function loadPublicPosts(): Promise<PublicPost[]> {
 export async function loadPublicPost(
   slug: string,
 ): Promise<PublicPost | null> {
-  if (!useFixturesOnly()) {
+  if (!fixturesOnlyMode()) {
     const fromDb = await withDbFallback(async () => {
       const { findPublishedBlogPostBySlug } = await import(
         "@/server/repositories/blog-repository"
@@ -354,7 +354,7 @@ export async function loadPublicPost(
 }
 
 export async function loadPublicServices(): Promise<PublicService[]> {
-  if (useFixturesOnly()) return getPublishedServices().map(mapFixtureService);
+  if (fixturesOnlyMode()) return getPublishedServices().map(mapFixtureService);
   return withDbFallback(async () => {
     const { findPublishedServicesFromDb } = await import(
       "@/server/repositories/service-repository"
@@ -368,7 +368,7 @@ export async function loadPublicServices(): Promise<PublicService[]> {
 export async function loadPublicService(
   slug: string,
 ): Promise<PublicService | null> {
-  if (!useFixturesOnly()) {
+  if (!fixturesOnlyMode()) {
     const fromDb = await withDbFallback(async () => {
       const { findPublishedServiceBySlugFromDb } = await import(
         "@/server/repositories/service-repository"
@@ -391,7 +391,7 @@ export async function loadPublicFaqs(): Promise<PublicFaq[]> {
       answer: f.answer,
       source: "fixture" as const,
     }));
-  if (useFixturesOnly()) return fixtures();
+  if (fixturesOnlyMode()) return fixtures();
   return withDbFallback(async () => {
     const { findPublishedFaqs } = await import(
       "@/server/repositories/faq-repository"
@@ -410,7 +410,7 @@ export async function loadPublicFaqs(): Promise<PublicFaq[]> {
 export async function loadPublicRecipeCategories(): Promise<
   Array<{ slug: string; title: string }>
 > {
-  if (useFixturesOnly()) return fixtureRecipeCategories;
+  if (fixturesOnlyMode()) return fixtureRecipeCategories;
   return withDbFallback(async () => {
     const { findPublishedRecipeCategoriesFromDb } = await import(
       "@/server/repositories/recipe-repository"
@@ -428,7 +428,7 @@ export async function loadPublicRecipes(opts?: {
     getPublishedRecipes()
       .filter((r) => !opts?.kategori || r.categorySlug === opts.kategori)
       .map(mapFixtureRecipe);
-  if (useFixturesOnly()) return fixtures();
+  if (fixturesOnlyMode()) return fixtures();
   return withDbFallback(async () => {
     const { findPublishedRecipesFromDb } = await import(
       "@/server/repositories/recipe-repository"
@@ -511,7 +511,7 @@ function mapDbRecipe(r: {
 export async function loadPublicRecipe(
   slug: string,
 ): Promise<PublicRecipe | null> {
-  if (!useFixturesOnly()) {
+  if (!fixturesOnlyMode()) {
     const fromDb = await withDbFallback(async () => {
       const { findPublishedRecipeBySlugFromDb } = await import(
         "@/server/repositories/recipe-repository"
@@ -527,7 +527,7 @@ export async function loadPublicRecipe(
 }
 
 export async function loadPublicGuides(): Promise<PublicGuide[]> {
-  if (useFixturesOnly()) return getPublishedGuides().map(mapFixtureGuide);
+  if (fixturesOnlyMode()) return getPublishedGuides().map(mapFixtureGuide);
   return withDbFallback(async () => {
     const { findPublishedGuidesFromDb } = await import(
       "@/server/repositories/guide-repository"
@@ -557,7 +557,7 @@ export async function loadPublicGuides(): Promise<PublicGuide[]> {
 export async function loadPublicGuide(
   slug: string,
 ): Promise<PublicGuide | null> {
-  if (!useFixturesOnly()) {
+  if (!fixturesOnlyMode()) {
     const fromDb = await withDbFallback(async () => {
       const { findPublishedGuideBySlugFromDb } = await import(
         "@/server/repositories/guide-repository"
