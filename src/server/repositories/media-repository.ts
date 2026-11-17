@@ -44,6 +44,58 @@ export async function createMediaAsset(data: {
   return prisma.mediaAsset.create({ data });
 }
 
+export async function findMediaByProviderPublicId(
+  provider: MediaProvider,
+  providerPublicId: string,
+) {
+  return prisma.mediaAsset.findFirst({
+    where: { provider, providerPublicId },
+  });
+}
+
+/** Cloudinary public_id yoksa oluşturur; varsa URL/boyut günceller. */
+export async function upsertCloudinaryMediaAsset(data: {
+  providerPublicId: string;
+  url: string;
+  alt: string;
+  mimeType: string;
+  bytes: number;
+  width: number | null;
+  height: number | null;
+}) {
+  const existing = await findMediaByProviderPublicId(
+    "CLOUDINARY",
+    data.providerPublicId,
+  );
+  if (existing) {
+    const asset = await prisma.mediaAsset.update({
+      where: { id: existing.id },
+      data: {
+        url: data.url,
+        mimeType: data.mimeType,
+        bytes: data.bytes,
+        width: data.width,
+        height: data.height,
+        alt: existing.alt || data.alt,
+      },
+    });
+    return { asset, created: false as const };
+  }
+  const asset = await prisma.mediaAsset.create({
+    data: {
+      provider: "CLOUDINARY",
+      providerPublicId: data.providerPublicId,
+      url: data.url,
+      alt: data.alt,
+      mimeType: data.mimeType,
+      bytes: data.bytes,
+      width: data.width,
+      height: data.height,
+    },
+  });
+  return { asset, created: true as const };
+}
+
 export async function updateMediaAlt(id: string, alt: string) {
   return prisma.mediaAsset.update({
     where: { id },

@@ -3,14 +3,52 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth/session";
-import { destroyCloudinaryAsset } from "@/lib/media/cloudinary";
+import {
+  destroyCloudinaryAsset,
+  listCloudinaryImages,
+} from "@/lib/media/cloudinary";
 import { writeAuditLog } from "@/server/audit";
 import {
   countMediaUsages,
   deleteMediaAssetRecord,
   getMediaAsset,
   updateMediaAlt,
+  upsertCloudinaryMediaAsset,
 } from "@/server/repositories/media-repository";
+
+export async function syncCloudinaryMediaAction() {
+  const session = await requireAdmin();
+  const resources = await listCloudinaryImages({ folder: "dyt-web" });
+  let created = 0;
+  let updated = 0;
+
+  for (const r of resources) {
+    const result = await upsertCloudinaryMediaAsset({
+      providerPublicId: r.publicId,
+      url: r.url,
+      alt: r.publicId.split("/").pop() ?? r.publicId,
+      mimeType: r.format ? `image/${r.format}` : "image/jpeg",
+      bytes: r.bytes,
+      width: r.width,
+      height: r.height,
+    });
+    if (result.created) created += 1;
+    else updated += 1;
+  }
+
+  await writeAuditLog({
+    actorId: session.user.id,
+    action: "update",
+    entityType: "MediaAsset",
+    entityId: "cloudinary-sync",
+    metadata: { folder: "dyt-web", total: resources.length, created, updated },
+  });
+
+  revalidatePath("/admin/medya");
+  redirect(
+    `/admin/medya?synced=1&total=${resources.length}&created=${created}&updated=${updated}`,
+  );
+}
 
 export async function updateMediaAltAction(formData: FormData) {
   const session = await requireAdmin();

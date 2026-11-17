@@ -5,12 +5,22 @@ import { EmptyState } from "@/components/site/EmptyState";
 import { getMediaStorageMode } from "@/lib/media/config";
 import {
   deleteUnusedMediaAction,
+  syncCloudinaryMediaAction,
   updateMediaAltAction,
 } from "@/server/actions/media-actions";
 import { listMediaAssets } from "@/server/repositories/media-repository";
 
 type Props = {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{
+    q?: string;
+    synced?: string;
+    total?: string;
+    created?: string;
+    updated?: string;
+    saved?: string;
+    deleted?: string;
+    error?: string;
+  }>;
 };
 
 export default async function AdminMediaPage({ searchParams }: Props) {
@@ -40,6 +50,26 @@ export default async function AdminMediaPage({ searchParams }: Props) {
       </p>
 
       <MediaUploadPanel />
+
+      {mode === "cloudinary" ? (
+        <Card className="bg-surface-container-low shadow-sm">
+          <h2 className="text-headline-sm">Cloudinary senkron</h2>
+          <p className="mt-space-sm text-body-sm text-on-surface-variant">
+            Konsolda / başka ortamda yüklenmiş dosyalar yalnızca Cloudinary&apos;de
+            durur. Bu düğme <code>dyt-web</code> klasöründeki görselleri Medya
+            tablosuna yazar (yeni ekler, mevcut public_id&apos;leri günceller).
+          </p>
+          {sp.synced === "1" ? (
+            <p className="mt-space-sm text-body-sm text-primary">
+              Senkron tamam — toplam {sp.total}, yeni {sp.created}, güncellenen{" "}
+              {sp.updated}.
+            </p>
+          ) : null}
+          <form action={syncCloudinaryMediaAction} className="mt-space-md">
+            <Button type="submit">Cloudinary&apos;den içe aktar</Button>
+          </form>
+        </Card>
+      ) : null}
 
       <Card>
         <form method="get" className="mb-space-md flex gap-space-sm">
