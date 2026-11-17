@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="tr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-container": "#547562", "secondary": "#ac3509", "on-secondary-container": "#631800", "on-secondary-fixed-variant": "#852300", "on-primary": "#ffffff", "surface-tint": "#1b6d24", "outline": "#707a6c", "on-primary-fixed": "#002204", "on-surface": "#1c1c18", "background": "#fcf9f2", "secondary-fixed-dim": "#ffb59f", "surface-container-low": "#f6f3ec", "tertiary-fixed-dim": "#abcfb8", "on-tertiary-fixed-variant": "#2d4d3c", "surface-container-highest": "#e5e2db", "surface-container-high": "#ebe8e1", "on-error": "#ffffff", "on-secondary": "#ffffff", "secondary-container": "#fe6f42", "surface-container": "#f1eee7", "on-error-container": "#93000a", "surface-container-lowest": "#ffffff", "outline-variant": "#bfcaba", "inverse-surface": "#31312c", "surface-dim": "#dcdad3", "on-background": "#1c1c18", "on-primary-container": "#cbffc2", "on-secondary-fixed": "#3a0a00", "on-tertiary-container": "#d5fae2", "error": "#ba1a1a", "primary": "#0d631b", "secondary-fixed": "#ffdbd0", "primary-fixed": "#a3f69c", "primary-fixed-dim": "#88d982", "primary-container": "#2e7d32", "tertiary-fixed": "#c7ebd4", "inverse-primary": "#88d982", "inverse-on-surface": "#f3f0e9", "error-container": "#ffdad6", "on-surface-variant": "#40493d", "on-tertiary-fixed": "#002113", "tertiary": "#3c5c4a", "surface-bright": "#fcf9f2", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#005312", "surface-variant": "#e5e2db", "surface": "#fcf9f2" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-lg": "1.5rem", "margin-mobile": "1.25rem", "space-sm": "0.5rem", "margin": "3rem", "space-xs": "0.25rem", "space-md": "1rem", "gutter": "1.5rem", "space-xl": "2.5rem", "gutter-mobile": "1rem" }, "fontFamily": { "headline-md": ["Playfair Display"], "headline-sm": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Playfair Display"], "body-lg": ["Inter"], "display-mobile": ["Playfair Display"], "label-sm": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-md": ["Inter"], "headline-lg": ["Playfair Display"], "body-sm": ["Inter"], "display": ["Playfair Display"] }, "fontSize": { "headline-md": ["28px", { "lineHeight": "36px", "fontWeight": "500" }], "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-lg-mobile": ["30px", { "lineHeight": "38px", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "display-mobile": ["38px", { "lineHeight": "46px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "label-lg": ["16px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "label-md": ["14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "display": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "600" }] } } } }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(27,59,43,0.06)]"><div class="h-20 max-w-7xl mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><img alt="NutriLife Dietitian Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4hH_9u2Y9zoZupBd-ps2LdTu82wEySHHZ4KeJy4abePAXYG--jP_1M8K4duSF_R0xzgvoz_bBki0H_d5P1l5U3Mg6BR4oWzI2qcq4wMFFGYA3x2ga-W7sCDbSDWf26MfROfZqweRHfRpuYjMtbAohVqgo7idR42iUVFxn4N8pWE1QpHq9TrCd1mol5kmM1302a8s883-U1LuVWwYO5LcQC7Ut2pzNYVyeD5Eh5Kg"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight leading-none">NutriLife</span><span class="font-label-sm text-label-sm text-tertiary hidden sm:block tracking-wide uppercase">Beslenme &amp; Diyet Danışmanlığı</span></div></div><nav class="hidden xl:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-full"><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-primary-container text-on-primary-container font-semibold rounded-full" data-path="ana-sayfa" href="#">Ana Sayfa</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="hakkimda" href="#">Hakkımda</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="hizmetler-paketler" href="#">Hizmetler &amp; Paketler</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="basari-hikayeleri" href="#">Başarı Hikayeleri</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="blog" href="#">Blog</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="iletisim" href="#">İletişim</a></nav><div class="flex items-center gap-space-sm"><a class="hidden md:flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md text-primary bg-surface-container-low hover:bg-surface-container-high transition-all shadow-[0_1px_8px_rgba(27,59,43,0.04)]" href="tel:+902125550123"><span class="material-symbols-outlined text-primary text-[18px]">call</span><span>+90 212 555 0123</span></a><a class="inline-flex items-center justify-center px-space-lg py-space-sm rounded-full font-label-md text-label-md text-on-primary bg-primary-container hover:bg-primary transition-all duration-200 shadow-[0_4px_16px_rgba(46,125,50,0.2)] hover:-translate-y-0.5" data-path="online-randevu" href="#">Online Randevu Al</a><img alt="Profile" class="w-8 h-8 rounded-full object-cover ml-space-xs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTdXLRlL1FLXcqc0d8i4neh_mie_mcrlgBszHQ68ytr4-OCaSpi_SzUu5FMpJ7Mc9aEIikfXKzUkUAz3b21gA00x4iTGeTZpzi-WNiXRWY39ajPOLXit1cbLwKgt-S2AhAuCVQyAcfmDeLXV6PTbtGBBQA5VWaffVbF6NGWpV6ewNvqx_TnWNeEe8CG8CCeLliSIC5owIWQIj-AuyXV3bfBW3n6P-IOihIJcwkMYs"/></div></div></header><main class="w-full flex-grow pt-20 bg-surface"><div class="flex flex-col w-full">
+<!-- Top Ambient Glow -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-32 -left-20 w-96 h-96 bg-primary-fixed/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-48 -right-24 w-80 h-80 bg-secondary-fixed/30 rounded-full blur-3xl pointer-events-none"></div>
+<!-- 1. HERO SECTION -->
+<section class="max-w-7xl mx-auto px-margin-mobile lg:px-margin pt-space-md lg:pt-space-xl pb-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg lg:gap-space-xl items-center">
+<!-- Hero Text & Trust Badges -->
+<div class="lg:col-span-7 flex flex-col gap-space-md lg:pr-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-low text-primary w-fit shadow-sm">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-semibold">Bütünsel Beslenme &amp; Klinik Sağlık</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight leading-tight">
+            Yasaklar Olmadan, <br class="hidden sm:block"/>
+<span class="text-primary italic font-serif">Sürdürülebilir</span> ve Sağlıklı Bir Yaşama Adım Atın
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            Uzman Diyetisyen Derya Kaya ile bedeninize uygun, katı kısıtlamalara girmeden, aç kalmadan keyifle uygulayacağınız kişiselleştirilmiş beslenme protokolleri ve zihinsel denge.
+          </p>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm pt-space-xs">
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg py-space-md rounded-full font-label-lg text-label-lg text-on-primary bg-primary-container hover:bg-primary transition-all duration-200 shadow-md hover:-translate-y-0.5" href="#assessment-section">
+<span>Ücretsiz Ön Görüşme Randevusu Al</span>
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+</a>
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg py-space-md rounded-full font-label-lg text-label-lg text-tertiary bg-surface-container-low hover:bg-surface-container transition-all" href="#hizmetler">
+<span>Hizmetlerimi İncele</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<!-- Trust Badges Strip -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm pt-space-md">
+<div class="flex items-center gap-space-xs p-space-sm rounded-xl bg-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">grade</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">4.9/5 Memnuniyet</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">850+ Mutlu Danışan</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs p-space-sm rounded-xl bg-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">school</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Hacettepe Mezunu</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Beslenme &amp; Diyetetik</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs p-space-sm rounded-xl bg-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-tertiary-container text-[24px]">clinical_notes</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">10+ Yıl Klinik Deneyim</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Kişiye Özel Yaklaşım</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Hero Visual Composition -->
+<div class="lg:col-span-5 relative mt-space-md lg:mt-0">
+<div class="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-xl bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Warm natural portrait of a friendly female dietitian in a bright, modern clinic with indoor plants, wooden accents, holding a fresh green smoothie, warm natural sunlight filtering in, professional clinical yet approachable wellness atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk0uC6e-g6ly44R9Ga0P29XXdRoI07tlwbzCE1o4esDh-NIhS_gDWkcwM0c8rgzlbaQPGtjAZ7aBigro72ZOQIWnxYvwzXqRVcziAj92n4HH4Xz7q1h6APWTm4Y-cnm8ov0wNJwsyR0afLPYNZ8c879GxRsO_2CRQrz3iNlI90nvj_NQxq1sz9Pf7wSW5snO7ARER56XNrem0GyzZ2G9XciKxnsONCtwNCJlfoZFY"/>
+<!-- Gradient Overlay for Legibility -->
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/50 via-transparent to-transparent"></div>
+<!-- Floating Badge: Bugün Yeni Bir Başlangıç Yap -->
+<div class="absolute bottom-6 left-6 right-6 p-space-md rounded-2xl bg-surface/95 backdrop-blur-md shadow-lg flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">spa</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight">Bugün Yeni Bir Başlangıç</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">İlk seansta %100 bireysel dinleme</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[28px] hidden sm:block">eco</span>
+</div>
+</div>
+<!-- Decorative Floating Card -->
+<div class="hidden sm:flex absolute -top-6 -left-6 p-space-sm px-space-md rounded-2xl bg-surface-container-lowest shadow-lg items-center gap-space-xs animate-bounce" style="animation-duration: 4s;">
+<span class="w-3 h-3 rounded-full bg-primary inline-block"></span>
+<span class="font-label-sm text-label-sm text-on-surface">Bu Hafta 4 Kontenjan Açık</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- 2. INTERACTIVE QUICK ASSESSMENT / BMI & GOAL CALCULATOR -->
+<section class="w-full bg-surface-container-low py-space-xl shadow-sm" id="assessment-section">
+<div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin">
+<div class="bg-surface-container-lowest rounded-3xl p-space-md md:p-space-xl shadow-md">
+<div class="max-w-3xl mx-auto text-center flex flex-col gap-space-xs mb-space-lg">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-widest">Kişiselleştirilmiş Yolculuk</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Size En Uygun Beslenme Yaklaşımını Bulun</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Metabolizmanız, günlük ritminiz ve sağlık öncelikleriniz size özeldir. Hedefinizi seçin ve ilk tahmininizi anında görüntüleyin.
+          </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left: Goal Selector Pills -->
+<div class="lg:col-span-5 flex flex-col gap-space-sm justify-center">
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">1. Öncelikli Sağlık Hedefinizi Belirleyin:</span>
+<label class="flex items-center gap-space-sm p-space-md rounded-2xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors goal-card active-goal" data-goal="kilo">
+<input checked="" class="hidden" name="goal_choice" type="radio" value="kilo"/>
+<span class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary material-symbols-outlined text-[20px]">scale</span>
+<div class="flex flex-col flex-grow">
+<span class="font-headline-sm text-headline-sm text-on-surface">Kilo Yönetimi</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Aç kalmadan yağ yakımı &amp; metabolik canlanma</span>
+</div>
+<span class="material-symbols-outlined text-primary check-icon">check_circle</span>
+</label>
+<label class="flex items-center gap-space-sm p-space-md rounded-2xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors goal-card" data-goal="bagirsak">
+<input class="hidden" name="goal_choice" type="radio" value="bagirsak"/>
+<span class="w-10 h-10 rounded-full bg-tertiary-container/10 flex items-center justify-center text-tertiary material-symbols-outlined text-[20px]">save_as</span>
+<div class="flex flex-col flex-grow">
+<span class="font-headline-sm text-headline-sm text-on-surface">İntolerans &amp; Sindirim</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Şişkinlik, IBS, mikrobiyota ve gıda duyarlılığı</span>
+</div>
+<span class="material-symbols-outlined text-transparent check-icon">check_circle</span>
+</label>
+<label class="flex items-center gap-space-sm p-space-md rounded-2xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors goal-card" data-goal="sporcu">
+<input class="hidden" name="goal_choice" type="radio" value="sporcu"/>
+<span class="w-10 h-10 rounded-full bg-secondary-fixed-dim/20 flex items-center justify-center text-secondary material-symbols-outlined text-[20px]">fitness_center</span>
+<div class="flex flex-col flex-grow">
+<span class="font-headline-sm text-headline-sm text-on-surface">Sporcu Beslenmesi</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Kas kütlesi artışı ve performans makroları</span>
+</div>
+<span class="material-symbols-outlined text-transparent check-icon">check_circle</span>
+</label>
+<label class="flex items-center gap-space-sm p-space-md rounded-2xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors goal-card" data-goal="gebelik">
+<input class="hidden" name="goal_choice" type="radio" value="gebelik"/>
+<span class="w-10 h-10 rounded-full bg-primary-fixed/30 flex items-center justify-center text-primary material-symbols-outlined text-[20px]">pregnant_woman</span>
+<div class="flex flex-col flex-grow">
+<span class="font-headline-sm text-headline-sm text-on-surface">Gebelik &amp; Emzirme</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Anne ve bebek için güvenli, besleyici menüler</span>
+</div>
+<span class="material-symbols-outlined text-transparent check-icon">check_circle</span>
+</label>
+</div>
+<!-- Right: Interactive Metrics & Output Box -->
+<div class="lg:col-span-7 p-space-lg rounded-2xl bg-surface-container flex flex-col justify-between gap-space-md">
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">2. Temel Fiziksel Bilgileriniz:</span>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm mt-space-sm">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface">Boy (cm)</label>
+<input class="w-full mt-1 bg-surface-container-lowest px-space-md py-space-sm rounded-xl font-body-md text-on-surface focus:outline-none shadow-sm" id="calc-height" type="number" value="168"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface">Kilo (kg)</label>
+<input class="w-full mt-1 bg-surface-container-lowest px-space-md py-space-sm rounded-xl font-body-md text-on-surface focus:outline-none shadow-sm" id="calc-weight" type="number" value="68"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface">Yaş</label>
+<input class="w-full mt-1 bg-surface-container-lowest px-space-md py-space-sm rounded-xl font-body-md text-on-surface focus:outline-none shadow-sm" id="calc-age" type="number" value="32"/>
+</div>
+</div>
+</div>
+<!-- Dynamic Result Card -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-tertiary">Önerilen Yaklaşım:</span>
+<span class="px-space-sm py-space-xs rounded-full font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed font-semibold" id="assessment-badge">Metabolik Esneklik Programı</span>
+</div>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-display text-display text-primary leading-none" id="calc-bmi">24.1</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant" id="calc-bmi-status">İdeal Ağırlık Aralığı</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="assessment-recommendation">
+                Metabolizmanızı yavaşlatmadan, vücut kompozisyonunuzu sıkılaştırmayı ve günlük enerji seviyenizi yükseltmeyi hedefleyen 8 haftalık dengeli beslenme planı.
+              </p>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">lock</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Verileriniz gizlilikle korunur</span>
+</div>
+<button class="w-full sm:w-auto px-space-lg py-space-sm rounded-full bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-all" id="open-appointment-trigger" type="button">
+                Bu Plana Göre Ön Görüşme Yap
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. SERVICES / SPECIALIZATION GRID -->
+<section class="max-w-7xl mx-auto px-margin-mobile lg:px-margin py-space-xl" id="hizmetler">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md mb-space-xl">
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-widest">Klinik Uzmanlık Alanları</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Bedeninizin Biyolojisine Saygılı Hizmetler</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Diyet yalnızca kalori hesabı değildir; hormonlar, bağırsak florası ve yaşam tarzınızın kusursuz ahengidir.
+        </p>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-8 h-1 bg-primary rounded-full inline-block"></span>
+<span class="font-label-sm text-label-sm text-tertiary">4 Özel Protokol</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Service Card 1 -->
+<div class="rounded-3xl p-space-lg bg-surface-container-low hover:bg-surface-container-high transition-all flex flex-col justify-between shadow-sm group">
+<div class="flex flex-col gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[32px]">balance</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Sürdürülebilir Kilo Yönetimi</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Aç kalmadan, yasak listelerine hapsolmadan metabolizma hızlandıran, sosyal hayatınızla uyumlu esnek menüler.
+            </p>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container text-tertiary font-label-sm text-label-sm">Açlık Krizi Önleme</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container text-tertiary font-label-sm text-label-sm">Beden Algısı</span>
+</div>
+</div>
+<div class="pt-space-lg">
+<a class="font-label-md text-label-md text-primary flex items-center gap-1 group-hover:gap-2 transition-all" href="#appointment-modal">
+<span>Detayları İncele</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Service Card 2 -->
+<div class="rounded-3xl p-space-lg bg-surface-container-lowest hover:bg-surface-container-low transition-all flex flex-col justify-between shadow-sm group">
+<div class="flex flex-col gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-tertiary-fixed/40 flex items-center justify-center text-tertiary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[32px]">coronavirus</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Fonksiyonel &amp; Bağırsak Sağlığı</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Mikrobiyota restorasyonu, IBS semptom kontrolü, şişkinlik ve gıda intoleranslarına yönelik eliminasyon diyetleri.
+            </p>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container text-tertiary font-label-sm text-label-sm">Mikrobiyom</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container text-tertiary font-label-sm text-label-sm">Eliminasyon</span>
+</div>
+</div>
+<div class="pt-space-lg">
+<a class="font-label-md text-label-md text-primary flex items-center gap-1 group-hover:gap-2 transition-all" href="#appointment-modal">
+<span>Detayları İncele</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Service Card 3 -->
+<div class="rounded-3xl p-space-lg bg-surface-container-low hover:bg-surface-container-high transition-all flex flex-col justify-between shadow-sm group">
+<div class="flex flex-col gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-secondary-fixed/40 flex items-center justify-center text-secondary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[32px]">bolt</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Sporcu &amp; Performans</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Yağsız kas kütlesi kazanımı, antrenman öncesi-sonrası beslenme zamanlaması ve yarışma hedefleri periyodizasyonu.
+            </p>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container text-tertiary font-label-sm text-label-sm">Toparlanma</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container text-tertiary font-label-sm text-label-sm">Kas Hipertrofisi</span>
+</div>
+</div>
+<div class="pt-space-lg">
+<a class="font-label-md text-label-md text-primary flex items-center gap-1 group-hover:gap-2 transition-all" href="#appointment-modal">
+<span>Detayları İncele</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Service Card 4 (Highlighted) -->
+<div class="rounded-3xl p-space-lg bg-primary-fixed-dim/20 hover:bg-primary-fixed-dim/30 transition-all flex flex-col justify-between shadow-sm group">
+<div class="flex flex-col gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-primary text-on-primary flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[32px]">devices</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Online &amp; Hibrit Takip</h3>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary font-label-sm text-label-sm">En Popüler</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Dünyanın her yerinden haftalık görüntülü seanslar, WhatsApp üzerinden tabak analizi ve 7/24 kesintisiz iletişim.
+            </p>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm">Haftalık Görüşme</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm">7/24 WhatsApp</span>
+</div>
+</div>
+<div class="pt-space-lg">
+<a class="font-label-md text-label-md text-primary flex items-center gap-1 group-hover:gap-2 transition-all font-semibold" href="#appointment-modal">
+<span>Hemen Başla</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. PHILOSOPHY & WHY WORK WITH ME -->
+<section class="w-full bg-surface-container-low py-space-xl">
+<div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Visual feature side -->
+<div class="lg:col-span-5 relative">
+<div class="w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-lg bg-surface">
+<img class="w-full h-full object-cover" data-alt="Dietitian's serene consulting room desk with a wooden bowl of colorful fresh organic vegetables, figs, green leaves, ceramic cup of herbal tea, stethoscope, and personalized nutrition plan notebook, gentle morning sunbeams" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3XnR_rphiFczAlbQAnSO51NBNDDaRf2tuAyzWSTJl5dxc4R85etXhPewECztenlIimOOwG1yt4h0O3GWIK2euGo0pyqp1XGIJjgOo9r2aKtcjyC-Wu4AHbbi91FKBWEzyxFxRs2rnmy7HKhiHrZ9oRKkCuh1QfFMSoaBx707oMsqeg1JFSL8Ny7G2tAufG8B-9r8Xrpjr4EMhj1NBY15GP6W4xpgXaoeLqzafCGI"/>
+</div>
+<div class="absolute -bottom-6 -right-4 p-space-md rounded-2xl bg-surface-container-lowest shadow-xl max-w-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[28px]">vital_signs</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-tertiary">Klinik Felsefemiz</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Tedavi Edici Beslenme</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 3-Column / Narrative side -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-widest">Neden Benimle Çalışmalısınız?</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Diyet Değil, Yaşam Boyu Sürecek Bir Dönüşüm</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Kalıplaşmış diyet listelerinin sonuçsuz kaldığı noktada, bireysel biyokimyanızı ve psikolojik ihtiyaçlarınızı merkeze alıyoruz.
+            </p>
+</div>
+<div class="space-y-space-md">
+<!-- Pillar 1 -->
+<div class="flex items-start gap-space-md p-space-md rounded-2xl bg-surface-container-lowest shadow-sm">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed/50 flex-shrink-0 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">block</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Katı Diyet Listeleri Yok</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Hayatınızdan ekmeği veya sevdiğiniz tatları çıkarmak zorunda değilsiniz. Menüleri sizin günlük rutininize, çalışma temponuza ve damak zevkinize göre birlikte kurguluyoruz.
+                </p>
+</div>
+</div>
+<!-- Pillar 2 -->
+<div class="flex items-start gap-space-md p-space-md rounded-2xl bg-surface-container-lowest shadow-sm">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex-shrink-0 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">chips</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Bilimsel ve Kanıta Dayalı Analiz</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Ezbere kaloriler yerine ayrıntılı kan tahlili, insülin direnci ve vitamin dengesi gibi metabolik verilerinizi inceleyerek kişiye özel fonksiyonel plan çıkarıyoruz.
+                </p>
+</div>
+</div>
+<!-- Pillar 3 -->
+<div class="flex items-start gap-space-md p-space-md rounded-2xl bg-surface-container-lowest shadow-sm">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex-shrink-0 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[24px]">support_agent</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Sürekli İletişim ve Yüksek Motivasyon</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Yalnız değilsiniz. Sadece randevu günlerinde değil, restoranda menü seçerken veya tatlı krizinde WhatsApp desteğimizle bir mesaj uzağınızdayız.
+                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. CLIENT SUCCESS STORIES & METRIC TESTIMONIALS -->
+<section class="max-w-7xl mx-auto px-margin-mobile lg:px-margin py-space-xl">
+<div class="text-center max-w-3xl mx-auto mb-space-xl flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-widest">Danışan Deneyimleri</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Birlikte Başardığımız Gerçek Hikayeler</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Yalnızca tartıdaki rakamlar değil; geri kazanılan enerji, azalan şişkinlik ve yemekle barışan huzurlu zihinler.
+      </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Testimonial 1 -->
+<div class="p-space-lg rounded-3xl bg-surface-container-lowest shadow-md flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex text-secondary gap-0.5">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-low font-label-sm text-label-sm text-tertiary">3 Ayda Dönüşüm</span>
+</div>
+<p class="font-headline-md text-headline-md italic text-on-surface leading-snug">
+            "Yıllardır yaptığım şok diyetlerin ardından ilk defa doya doya yiyerek 11 kilo hafifledim."
+          </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Derya Hanım sayesinde aç kalmadan tatlı krizlerimi nasıl yöneteceğimi öğrendim. Artık enerjim gün boyu stabil.
+          </p>
+</div>
+<div class="pt-space-md">
+<!-- Metrics Chip -->
+<div class="flex items-center gap-space-xs mb-space-sm p-space-xs rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[18px]">trending_down</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">-%7.4 Yağ Oranı • +40% Enerji</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center font-headline-sm text-headline-sm text-on-tertiary-fixed">
+              ES
+            </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Elif S.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Mimar, 34</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="p-space-lg rounded-3xl bg-surface-container-lowest shadow-md flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex text-secondary gap-0.5">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-low font-label-sm text-label-sm text-tertiary">Bağırsak Sağlığı</span>
+</div>
+<p class="font-headline-md text-headline-md italic text-on-surface leading-snug">
+            "Yıllardır çektiğim karın şişkinliği ve halsizlik 6 haftalık eliminasyonla tamamen son buldu."
+          </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Fonksiyonel beslenme yaklaşımı ile hangi gıdaların bana dokunduğunu bilimsel olarak tespit ettik. Hayat kalitem inanılmaz arttı.
+          </p>
+</div>
+<div class="pt-space-md">
+<!-- Metrics Chip -->
+<div class="flex items-center gap-space-xs mb-space-sm p-space-xs rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[18px]">health_and_safety</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">Sıfır Şişkinlik • Düzenli Sindirim</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center font-headline-sm text-headline-sm text-on-secondary-fixed">
+              MD
+            </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Murat D.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Yazılım Yöneticisi, 41</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="p-space-lg rounded-3xl bg-surface-container-lowest shadow-md flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex text-secondary gap-0.5">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-low font-label-sm text-label-sm text-tertiary">Online Seans</span>
+</div>
+<p class="font-headline-md text-headline-md italic text-on-surface leading-snug">
+            "Londra'da yaşıyorum. Online süreçte yanımda bu kadar güçlü bir rehber olacağını düşünmemiştim."
+          </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Her hafta tahlillerime ve oradaki market imkanlarına göre tarifler oluşturdu. İnsülin direncim 4 ayda normale geriledi.
+          </p>
+</div>
+<div class="pt-space-md">
+<!-- Metrics Chip -->
+<div class="flex items-center gap-space-xs mb-space-sm p-space-xs rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">İnsülin Dengesi • -14 kg Kalıcı</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim flex items-center justify-center font-headline-sm text-headline-sm text-on-primary-fixed">
+              ZA
+            </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Zeynep A.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pazarlama Direktörü, 29</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. HOW WE WORK (4 STEP PROCESS) -->
+<section class="w-full bg-surface-container py-space-xl">
+<div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin">
+<div class="flex flex-col items-center text-center max-w-2xl mx-auto mb-space-xl gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-widest">Süreç Nasıl İlerliyor?</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Sağlıklı Geleceğinize 4 Kolay Adım</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Karmaşık ve yorucu süreçler yerine, adım adım hedefinize ulaştıran şeffaf bir danışmanlık deneyimi.
+        </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md relative">
+<!-- Step 1 -->
+<div class="p-space-lg rounded-3xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md relative">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary font-headline-sm text-headline-sm flex items-center justify-center">
+            1
+          </div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Ön Tanışma &amp; Tahlil</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Mevcut kan tahlilleriniz, yaşam tarzınız, uyku düzeniniz ve beslenme geçmişiniz detaylıca analiz edilir.
+            </p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="p-space-lg rounded-3xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md relative">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary font-headline-sm text-headline-sm flex items-center justify-center">
+            2
+          </div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Özel Beslenme Haritası</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Biyokimyanıza ve sevdiğiniz lezzetlere göre hazırlanan alternatifli, pratik ve doyurucu haftalık plan çıkarılır.
+            </p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="p-space-lg rounded-3xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md relative">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary font-headline-sm text-headline-sm flex items-center justify-center">
+            3
+          </div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Haftalık Takip &amp; Güncelleme</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Haftalık ölçüm seansları, tabağınızın fotoğraf analizi ve metabolizmanın adaptasyonuna göre menü revizyonları yapılır.
+            </p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="p-space-lg rounded-3xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md relative">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary font-headline-sm text-headline-sm flex items-center justify-center">
+            4
+          </div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Kalıcı Koruma Dönemi</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              İdeal kilonuza ulaştıktan sonra verdiğiniz kiloları ömür boyu korumanızı sağlayan koruma protokolüne geçilir.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. FAQ & FINAL HIGH-CONVERTING CTA MODAL/BOX -->
+<section class="max-w-7xl mx-auto px-margin-mobile lg:px-margin py-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+<!-- FAQ Accordion -->
+<div class="lg:col-span-6 flex flex-col gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-widest">Merak Edilenler</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Sıkça Sorulan Sorular</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Beslenme sürecine başlamadan önce aklınızdaki tüm soru işaretlerini yanıtlıyoruz.
+          </p>
+</div>
+<div class="space-y-space-sm pt-space-xs" id="faq-accordion">
+<!-- FAQ 1 -->
+<div class="rounded-2xl bg-surface-container-low overflow-hidden transition-all faq-item">
+<button class="w-full p-space-md flex items-center justify-between text-left font-headline-sm text-headline-sm text-on-surface faq-btn">
+<span>Online diyet programı yüz yüze kadar etkili mi?</span>
+<span class="material-symbols-outlined text-primary faq-icon">expand_more</span>
+</button>
+<div class="px-space-md pb-space-md font-body-sm text-body-sm text-on-surface-variant leading-relaxed faq-content hidden">
+              Kesinlikle. Yapılan klinik çalışmalar, haftalık görüntülü görüşmeler ve WhatsApp üzerinden anlık tabak kontrolünün motivasyonu ve başarı oranını artırdığını göstermektedir. Şehir veya yurt dışı fark etmeksizin aynı özenle takip edilirsiniz.
+            </div>
+</div>
+<!-- FAQ 2 -->
+<div class="rounded-2xl bg-surface-container-low overflow-hidden transition-all faq-item">
+<button class="w-full p-space-md flex items-center justify-between text-left font-headline-sm text-headline-sm text-on-surface faq-btn">
+<span>Diyet listemde sevmediğim yiyecekler olacak mı?</span>
+<span class="material-symbols-outlined text-primary faq-icon">expand_more</span>
+</button>
+<div class="px-space-md pb-space-md font-body-sm text-body-sm text-on-surface-variant leading-relaxed faq-content hidden">
+              Hayır. İlk seansta sevmediğiniz veya tüketmekten hoşlanmadığınız tüm besinleri kaydediyoruz. Menüleriniz sadece severek yiyeceğiniz sağlıklı alternatiflerle hazırlanır.
+            </div>
+</div>
+<!-- FAQ 3 -->
+<div class="rounded-2xl bg-surface-container-low overflow-hidden transition-all faq-item">
+<button class="w-full p-space-md flex items-center justify-between text-left font-headline-sm text-headline-sm text-on-surface faq-btn">
+<span>Kan tahlili yaptırmak zorunlu mu?</span>
+<span class="material-symbols-outlined text-primary faq-icon">expand_more</span>
+</button>
+<div class="px-space-md pb-space-md font-body-sm text-body-sm text-on-surface-variant leading-relaxed faq-content hidden">
+              Kişiselleştirilmiş ve güvenli bir program için son 6 ay içinde yapılmış kan tahlillerini inceliyoruz. Eksik veya eski tahlilleriniz varsa, ön görüşmede hekiminize yönlendirilecek parametre listesini iletiyoruz.
+            </div>
+</div>
+<!-- FAQ 4 -->
+<div class="rounded-2xl bg-surface-container-low overflow-hidden transition-all faq-item">
+<button class="w-full p-space-md flex items-center justify-between text-left font-headline-sm text-headline-sm text-on-surface faq-btn">
+<span>Verdiğim kiloları program bitince geri alır mıyım?</span>
+<span class="material-symbols-outlined text-primary faq-icon">expand_more</span>
+</button>
+<div class="px-space-md pb-space-md font-body-sm text-body-sm text-on-surface-variant leading-relaxed faq-content hidden">
+              Amacımız size geçici bir liste vermek değil, beslenme davranışını yeniden öğretmektir. Programımızın son etabı olan 'Kalıcı Koruma Protokolü' sayesinde kilonuzu ömür boyu koruma refleksini kazanırsınız.
+            </div>
+</div>
+</div>
+</div>
+<!-- Final High-Converting Consultation Form Box -->
+<div class="lg:col-span-6" id="appointment-modal">
+<div class="p-space-lg lg:p-space-xl rounded-3xl bg-surface-container-lowest shadow-xl flex flex-col gap-space-md relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-fixed/30 rounded-bl-full pointer-events-none"></div>
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-widest">İlk Adımı Bugün Atın</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Ücretsiz 15 Dakikalık Ön Görüşme</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Bilgilerinizi bırakın; durumunuzu değerlendirelim, size en uygun seans modelini birlikte belirleyelim.
+            </p>
+</div>
+<form class="flex flex-col gap-space-sm" id="consultation-form" onsubmit="return false;">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface">Adınız ve Soyadınız</label>
+<input class="w-full mt-1 bg-surface-container-low px-space-md py-space-sm rounded-xl font-body-sm text-on-surface focus:outline-none shadow-sm" placeholder="Örn: Ayşe Yılmaz" required="" type="text"/>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface">Telefon Numaranız</label>
+<input class="w-full mt-1 bg-surface-container-low px-space-md py-space-sm rounded-xl font-body-sm text-on-surface focus:outline-none shadow-sm" placeholder="05XX XXX XX XX" required="" type="tel"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface">E-posta Adresiniz</label>
+<input class="w-full mt-1 bg-surface-container-low px-space-md py-space-sm rounded-xl font-body-sm text-on-surface focus:outline-none shadow-sm" placeholder="adiniz@ornek.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface">Görüşme Tercihi &amp; Paket</label>
+<select class="w-full mt-1 bg-surface-container-low px-space-md py-space-sm rounded-xl font-body-sm text-on-surface focus:outline-none shadow-sm">
+<option value="online">Online Görüntülü Danışmanlık</option>
+<option value="yuzyuze">Nişantaşı Klinik Yüz Yüze Görüşme</option>
+<option value="fonksiyonel">Fonksiyonel Bağırsak Protokolü</option>
+<option value="sporcu">Sporcu &amp; Performans Beslenmesi</option>
+</select>
+</div>
+<div class="pt-space-xs">
+<button class="w-full py-space-sm px-space-lg rounded-full bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-all shadow-md flex items-center justify-center gap-space-xs" id="submit-appointment-btn" type="submit">
+<span>Randevu Talebini Gönder</span>
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+<!-- Confirmation message state -->
+<div class="hidden p-space-sm rounded-xl bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm text-center" id="form-success-banner">
+              Talebiniz başarıyla alındı! Ekibimiz 24 saat içinde sizinle iletişime geçecektir.
+            </div>
+<p class="font-label-sm text-label-sm text-on-surface-variant text-center">
+              Bilgileriniz KVKK kapsamında korunmakta olup kesinlikle 3. şahıslarla paylaşılmaz.
+            </p>
+</form>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // BMI & Assessment Calculator Micro-interaction
+  function calculateBMI() {
+    const heightInput = document.getElementById('calc-height');
+    const weightInput = document.getElementById('calc-weight');
+    const bmiVal = document.getElementById('calc-bmi');
+    const bmiStatus = document.getElementById('calc-bmi-status');
+
+    if (!heightInput || !weightInput || !bmiVal || !bmiStatus) return;
+
+    const heightInMeters = parseFloat(heightInput.value) / 100;
+    const weight = parseFloat(weightInput.value);
+
+    if (heightInMeters > 0 && weight > 0) {
+      const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(1);
+      bmiVal.innerText = bmi;
+
+      if (bmi < 18.5) {
+        bmiStatus.innerText = 'Düşük Kilo Aralığı';
+      } else if (bmi < 24.9) {
+        bmiStatus.innerText = 'İdeal Ağırlık Dengesi';
+      } else if (bmi < 29.9) {
+        bmiStatus.innerText = 'Hafif Kilolu Aralığı';
+      } else {
+        bmiStatus.innerText = 'Metabolik Destek Gerekli';
+      }
+    }
+  }
+
+  document.getElementById('calc-height')?.addEventListener('input', calculateBMI);
+  document.getElementById('calc-weight')?.addEventListener('input', calculateBMI);
+
+  // Goal Selector Interactivity
+  const goalCards = document.querySelectorAll('.goal-card');
+  const badgeEl = document.getElementById('assessment-badge');
+  const recoEl = document.getElementById('assessment-recommendation');
+
+  const goalDescriptions = {
+    kilo: {
+      badge: 'Metabolik Esneklik Programı',
+      text: 'Metabolizmanızı yavaşlatmadan, vücut kompozisyonunuzu sıkılaştırmayı ve günlük enerji seviyenizi yükseltmeyi hedefleyen 8 haftalık dengeli beslenme planı.'
+    },
+    bagirsak: {
+      badge: 'Mikrobiyota Restorasyon Protokolü',
+      text: 'Gaz, şişkinlik ve gıda intoleranslarını sakinleştiren, sindirim sistemini onarıcı 6 haftalık eliminasyon ve bağırsak bariyeri güçlendirme süreci.'
+    },
+    sporcu: {
+      badge: 'Performans & Kas Kompozisyonu',
+      text: 'Antrenman şiddetinize ve dinlenme günlerinize özel makro zamanlaması ile maksimum toparlanma ve yağsız kas kütlesi inşası.'
+    },
+    gebelik: {
+      badge: 'Anne & Bebek Bütünsel Beslenme',
+      text: 'Trimester dönemlerine ve emzirme sürecinin hormonal dinamiklerine uygun, eksiksiz mikronütrient ve enerji desteği.'
+    }
+  };
+
+  goalCards.forEach(card => {
+    card.addEventListener('click', () => {
+      goalCards.forEach(c => {
+        c.classList.remove('bg-surface-container', 'shadow-sm');
+        c.classList.add('bg-surface-container-low');
+        const icon = c.querySelector('.check-icon');
+        if (icon) {
+          icon.classList.remove('text-primary');
+          icon.classList.add('text-transparent');
+        }
+      });
+
+      card.classList.remove('bg-surface-container-low');
+      card.classList.add('bg-surface-container', 'shadow-sm');
+      const activeIcon = card.querySelector('.check-icon');
+      if (activeIcon) {
+        activeIcon.classList.remove('text-transparent');
+        activeIcon.classList.add('text-primary');
+      }
+
+      const goalKey = card.getAttribute('data-goal');
+      if (goalKey && goalDescriptions[goalKey]) {
+        if (badgeEl) badgeEl.innerText = goalDescriptions[goalKey].badge;
+        if (recoEl) recoEl.innerText = goalDescriptions[goalKey].text;
+      }
+    });
+  });
+
+  // Accordion FAQ Interactivity
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const btn = item.querySelector('.faq-btn');
+    const content = item.querySelector('.faq-content');
+    const icon = item.querySelector('.faq-icon');
+
+    btn?.addEventListener('click', () => {
+      const isHidden = content.classList.contains('hidden');
+      // Close all
+      document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.faq-icon').forEach(i => i.innerText = 'expand_more');
+
+      if (isHidden) {
+        content.classList.remove('hidden');
+        if (icon) icon.innerText = 'expand_less';
+      }
+    });
+  });
+
+  // Smooth scroll to appointment on triggers
+  document.getElementById('open-appointment-trigger')?.addEventListener('click', () => {
+    document.getElementById('appointment-modal')?.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Simple Consultation Form Handler
+  document.getElementById('consultation-form')?.addEventListener('submit', function() {
+    const successBanner = document.getElementById('form-success-banner');
+    if (successBanner) {
+      successBanner.classList.remove('hidden');
+    }
+  });
+</script></main><footer class="w-full bg-surface-container-low text-on-surface pt-space-xl pb-space-lg shadow-[0_-1px_8px_rgba(27,59,43,0.03)]"><div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-xl pb-space-xl"><div class="lg:col-span-4 flex flex-col gap-space-md"><div class="flex items-center gap-space-sm"><img alt="NutriLife Dietitian Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4hH_9u2Y9zoZupBd-ps2LdTu82wEySHHZ4KeJy4abePAXYG--jP_1M8K4duSF_R0xzgvoz_bBki0H_d5P1l5U3Mg6BR4oWzI2qcq4wMFFGYA3x2ga-W7sCDbSDWf26MfROfZqweRHfRpuYjMtbAohVqgo7idR42iUVFxn4N8pWE1QpHq9TrCd1mol5kmM1302a8s883-U1LuVWwYO5LcQC7Ut2pzNYVyeD5Eh5Kg"/><span class="font-headline-sm text-headline-sm text-primary">NutriLife Klinik</span></div><p class="font-body-md text-body-md text-on-surface-variant">Bütünsel iyilik hali, sürdürülebilir beslenme alışkanlıkları ve klinik uzmanlıkla bedeninize hak ettiği özeni gösterin. Nişantaşı'nda huzurlu bir sağlık deneyimi.</p><div class="flex items-center gap-space-sm pt-space-xs"><a aria-label="Instagram" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-primary shadow-[0_1px_8px_rgba(27,59,43,0.05)] hover:bg-primary-container hover:text-on-primary transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">photo_camera</span></a><a aria-label="LinkedIn" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-primary shadow-[0_1px_8px_rgba(27,59,43,0.05)] hover:bg-primary-container hover:text-on-primary transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">work</span></a><a aria-label="YouTube" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-primary shadow-[0_1px_8px_rgba(27,59,43,0.05)] hover:bg-primary-container hover:text-on-primary transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">smart_display</span></a><a aria-label="E-posta" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-primary shadow-[0_1px_8px_rgba(27,59,43,0.05)] hover:bg-primary-container hover:text-on-primary transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">alternate_email</span></a></div></div><div class="lg:col-span-3 flex flex-col gap-space-md"><h3 class="font-headline-sm text-headline-sm text-on-surface">İletişim &amp; Adres</h3><div class="flex flex-col gap-space-sm font-body-sm text-body-sm text-on-surface-variant"><div class="flex items-start gap-space-xs"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">location_on</span><span>Teşvikiye Cad. No: 42/6, Nişantaşı, Şişli, İstanbul</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[20px]">mail</span><a class="hover:text-primary transition-colors" href="mailto:info@nutrilife.com.tr">info@nutrilife.com.tr</a></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[20px]">phone_in_talk</span><a class="hover:text-primary transition-colors" href="tel:+902125550123">+90 212 555 0123</a></div></div><div class="flex flex-col gap-space-xs pt-space-xs"><h4 class="font-label-md text-label-md text-on-surface">Çalışma Saatleri</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Pzt - Cuma: 09:00 - 18:30<br/>Cumartesi: 10:00 - 16:00<br/>Pazar: Kapalı</p></div></div><div class="lg:col-span-2 flex flex-col gap-space-md"><h3 class="font-headline-sm text-headline-sm text-on-surface">Hızlı Erişim</h3><nav class="flex flex-col gap-space-xs font-label-md text-label-md"><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="hakkimda" href="#">Hakkımızda</a><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="hizmetler-paketler" href="#">Beslenme Paketleri</a><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="basari-hikayeleri" href="#">Danışan Hikayeleri</a><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="blog" href="#">Sağlıklı Tarifler &amp; Blog</a><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="online-randevu" href="#">Randevu Takvimi</a></nav></div><div class="lg:col-span-3 flex flex-col gap-space-md"><h3 class="font-headline-sm text-headline-sm text-on-surface">Sağlık Bülteni</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Haftalık bilimsel beslenme tüyoları, mevsimsel tarifler ve klinik duyurularımız için kaydolun.</p><form class="flex flex-col gap-space-xs" onsubmit="return false;"><div class="relative flex items-center"><input class="w-full bg-surface px-space-md py-space-sm rounded-xl font-body-sm text-body-sm text-on-surface placeholder:text-outline-variant focus:outline-none shadow-[0_1px_8px_rgba(27,59,43,0.04)]" placeholder="E-posta adresinizi girin" type="email"/><button class="absolute right-1.5 px-space-md py-space-xs rounded-lg font-label-sm text-label-sm text-on-primary bg-primary hover:bg-primary-container transition-colors" type="submit">Kayıt Ol</button></div><p class="font-label-sm text-label-sm text-tertiary">Spam yok, yalnızca taze ve yararlı içerikler.</p></form></div></div><div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md font-body-sm text-body-sm text-on-surface-variant"><div class="flex flex-wrap items-center gap-x-space-md gap-y-space-xs font-label-sm text-label-sm"><a class="hover:text-primary transition-colors" data-path="kvkk-aydinlatma-metni" href="#">KVKK Aydınlatma Metni</a><span class="text-outline-variant">•</span><a class="hover:text-primary transition-colors" data-path="cerez-politikasi" href="#">Çerez Politikası</a><span class="text-outline-variant">•</span><a class="hover:text-primary transition-colors" data-path="acik-riza-metni" href="#">Açık Rıza Metni</a></div><p class="font-body-sm text-body-sm text-tertiary text-center md:text-right">© 2024 NutriLife Beslenme &amp; Diyet Kliniği. Tüm hakları saklıdır.</p></div></div></footer></body></html>

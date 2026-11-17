@@ -1,0 +1,20 @@
+---
+description: Diyetisyen sitesi kapsamı ve Stitch tasarımını koruyarak güvenli geliştirme kuralları
+alwaysApply: true
+---
+# Proje kuralları
+
+- Kullanıcı nihai kapsamı `docs/PRD.md` dosyasında tanımlıdır; önce bunu oku. `docs/ARCHITECTURE.md`, `docs/STITCH_AUDIT.md`, `stitch-reference/DESIGN.md` ve `stitch-reference/screen.png` diğer temel kaynaklardır.
+- `stitch-reference/code.html` ve `screen.png` yalnızca **tasarım referansıdır**. CDN Tailwind/inline scriptleri production'a aynen taşıma; React bileşenlerine ve lokal Tailwind build'e dönüştür.
+- Her faz sadece istenen kapsamı kodlasın. Gereksiz refactor, yeni dependency, yeni ödeme/takvim/danışan portalı ekleme.
+- Admin paneli **zorunludur**; blog, tarif, hizmet, SSS, rehberler ve site ayarları UI'dan yönetilebilir olmalı.
+- İletişim akışı WhatsApp/telefon/e-posta; randevu takvimi, rezervasyon, sahte 'talebiniz alındı' formu olmayacak.
+- Örnek diyetisyen kimliği, diploma, memnuniyet, danışan yorumu, danışan sayısı, adres, telefon, indirim, sonuç vaadi gibi prototip verilerini doğrulanmış gibi sunma; placeholder kullan ve production checklist'e ekle.
+- MySQL/MariaDB + Prisma ORM **v7** uyumu; Prisma 8'i MariaDB ile kullanma. `DATABASE_URL` yalnızca server env. Local/production DB ayrımı.
+- Auth sadece server'da yetki doğrulayarak korunsun; yalnızca UI'dan gizlemek güvenlik değildir. OWASP ilkelerini uygula.
+- Medya kalıcı harici object storage'a gönderilmeli, Hostinger deploy klasörüne yazılmamalı.
+- Beslenme hesaplamaları bilgilendirme amaçlı, client-side, tıbbi teşhis/tedavi önerisi yok; veri kaydetme/analitik yollama yok.
+- Production'a sahte veri, sahte başarı ekranı, `href="#"`, kırık link, boş bülten formu bırakma.
+- TypeScript strict; Zod ile server-side validation; tek doğruluk kaynağı; erişilebilir UI; responsive tasarım.
+- Kod güncellemelerinden sonra ilgili testleri çalıştır; sonucu açıkça raporla, **koşulmayan test geçti deme**.
+- Her faz bitiminde: değişen dosyalar, alınan kararlar, çalıştırılan komutlar/testler ve bir sonraki adımı Türkçe özetle.

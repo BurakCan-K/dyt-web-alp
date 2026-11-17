@@ -1,0 +1,243 @@
+// Prisma ORM 7 — MySQL/MariaDB (Hostinger uyumlu)
+// Runtime bağlantı: @prisma/adapter-mariadb (src/lib/db)
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum AdminRole {
+  OWNER
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum MediaProvider {
+  CLOUDINARY
+  S3
+  LOCAL_PLACEHOLDER
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  role         AdminRole @default(OWNER)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  auditLogs    AuditLog[]
+}
+
+/// Singleton site ayarları — uygulamada tek satır tutulur
+model SiteSettings {
+  id                 String   @id @default("default")
+  brandName          String
+  dietitianName      String
+  professionalTitle  String
+  heroTitle          String   @db.Text
+  heroSubtitle       String   @db.Text
+  biography          String?  @db.LongText
+  phone              String?
+  whatsappE164       String?
+  email              String?
+  address            String?  @db.Text
+  mapUrl             String?  @db.Text
+  openingHoursJson   Json?
+  instagramUrl       String?
+  metaTitle          String
+  metaDescription    String   @db.Text
+  logoMediaId        String?
+  logoMedia          MediaAsset? @relation("SiteLogo", fields: [logoMediaId], references: [id], onDelete: SetNull)
+  updatedAt          DateTime @updatedAt
+  createdAt          DateTime @default(now())
+
+  @@index([logoMediaId])
+}
+
+model MediaAsset {
+  id               String        @id @default(cuid())
+  provider         MediaProvider
+  providerPublicId String
+  url              String        @db.Text
+  alt              String        @default("")
+  mimeType         String
+  bytes            Int
+  width            Int?
+  height           Int?
+  createdAt        DateTime      @default(now())
+
+  siteLogos        SiteSettings[] @relation("SiteLogo")
+  serviceImages    Service[]      @relation("ServiceImage")
+  postCovers       BlogPost[]     @relation("PostCover")
+  recipeCovers     Recipe[]       @relation("RecipeCover")
+  guideCovers      NutritionGuide[] @relation("GuideCover")
+
+  @@index([provider, providerPublicId])
+}
+
+model Service {
+  id               String        @id @default(cuid())
+  slug             String        @unique
+  title            String
+  summary          String        @db.Text
+  descriptionJson  Json
+  imageId          String?
+  image            MediaAsset?   @relation("ServiceImage", fields: [imageId], references: [id], onDelete: SetNull)
+  position         Int           @default(0)
+  isFeatured       Boolean       @default(false)
+  status           ContentStatus @default(DRAFT)
+  publishedAt      DateTime?
+  seoTitle         String?
+  seoDescription   String?       @db.Text
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  deletedAt        DateTime?
+
+  @@index([status, publishedAt])
+  @@index([position])
+  @@index([imageId])
+}
+
+model PostCategory {
+  id       String     @id @default(cuid())
+  slug     String     @unique
+  title    String
+  position Int        @default(0)
+  posts    BlogPost[]
+}
+
+model BlogPost {
+  id             String        @id @default(cuid())
+  slug           String        @unique
+  title          String
+  excerpt        String        @db.Text
+  contentJson    Json
+  coverMediaId   String?
+  coverMedia     MediaAsset?   @relation("PostCover", fields: [coverMediaId], references: [id], onDelete: SetNull)
+  categoryId     String?
+  category       PostCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  tagsJson       Json?
+  referencesJson Json?
+  status         ContentStatus @default(DRAFT)
+  publishedAt    DateTime?
+  seoTitle       String?
+  seoDescription String?       @db.Text
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  deletedAt      DateTime?
+
+  @@index([status, publishedAt])
+  @@index([categoryId])
+  @@index([coverMediaId])
+}
+
+model RecipeCategory {
+  id       String   @id @default(cuid())
+  slug     String   @unique
+  title    String
+  position Int      @default(0)
+  recipes  Recipe[]
+}
+
+model Recipe {
+  id                      String             @id @default(cuid())
+  slug                    String             @unique
+  title                   String
+  excerpt                 String             @db.Text
+  instructionsJson        Json
+  servingCount            Int                @default(1)
+  prepMinutes             Int                @default(0)
+  cookMinutes             Int                @default(0)
+  /// El ile girilen porsiyon besin değerleri (tahmini olabilir)
+  nutrientsPerServingJson Json?
+  /// Besin değeri kaynağı / tahmin notu (otomatik bilimsel üretim yok)
+  nutrientSource          String?            @db.Text
+  categoryId              String?
+  category                RecipeCategory?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  coverMediaId            String?
+  coverMedia              MediaAsset?        @relation("RecipeCover", fields: [coverMediaId], references: [id], onDelete: SetNull)
+  status                  ContentStatus      @default(DRAFT)
+  publishedAt             DateTime?
+  seoTitle                String?
+  seoDescription          String?            @db.Text
+  createdAt               DateTime           @default(now())
+  updatedAt               DateTime           @updatedAt
+  deletedAt               DateTime?
+  ingredients             RecipeIngredient[]
+
+  @@index([status, publishedAt])
+  @@index([categoryId])
+  @@index([coverMediaId])
+}
+
+model RecipeIngredient {
+  id              String  @id @default(cuid())
+  recipeId        String
+  recipe          Recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  position        Int     @default(0)
+  name            String
+  quantityDecimal Decimal @db.Decimal(10, 3)
+  unit            String
+  note            String?
+
+  @@index([recipeId, position])
+}
+
+model NutritionGuide {
+  id             String        @id @default(cuid())
+  slug           String        @unique
+  title          String
+  intro          String        @db.Text
+  contentJson    Json
+  mealPlanJson   Json?
+  /// İlgili tarif slug listesi (MVP soft link)
+  relatedRecipeSlugsJson Json?
+  coverMediaId   String?
+  coverMedia     MediaAsset?   @relation("GuideCover", fields: [coverMediaId], references: [id], onDelete: SetNull)
+  status         ContentStatus @default(DRAFT)
+  publishedAt    DateTime?
+  seoTitle       String?
+  seoDescription String?       @db.Text
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  deletedAt      DateTime?
+
+  @@index([status, publishedAt])
+  @@index([coverMediaId])
+}
+
+model Faq {
+  id         String   @id @default(cuid())
+  question   String   @db.Text
+  answerText String   @db.LongText
+  position   Int      @default(0)
+  published  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([published, position])
+}
+
+model AuditLog {
+  id         String     @id @default(cuid())
+  actorId    String?
+  actor      AdminUser? @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  action     String
+  entityType String
+  entityId   String?
+  /// Hassas veri (parola vb.) yazılmaz
+  metadata   Json?
+  createdAt  DateTime   @default(now())
+
+  @@index([entityType, entityId])
+  @@index([actorId, createdAt])
+}
